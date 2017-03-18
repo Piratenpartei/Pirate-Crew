@@ -274,7 +274,7 @@ if (!class_exists('Pirate_Crew')):
          */
         public function shortcode_preview($post) {
             if ('pirate_crew' == $post->post_type && 'publish' == $post->post_status) {
-                printf('<p>%1$s: <code>[crew id="%2$s"]</code><button id="copy-pirate-crew" type="button" data-clipboard-text="[crew id=&quot;%2$s&quot;]" class="button">%3$s</button></p>', __("Shortcode", $this->text_domain), $post->ID, __("Copy", $this->text_domain));
+                printf('<p>%1$s: <code>[crew id="%2$s"]</code><button id="copy-picrew" type="button" data-clipboard-text="[crew id=&quot;%2$s&quot;]" class="button">%3$s</button></p>', __("Shortcode", $this->text_domain), $post->ID, __("Copy", $this->text_domain));
             }
             return;
         }

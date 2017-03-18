@@ -1,6 +1,6 @@
 <div class="member-details-section">
 <p>
-    <label for="pirate-crew-designation"><?php _e( "Position", $this->text_domain ); ?></label>
+    <label for="pirate-crew-designation"><?php _e( "Designation", $this->text_domain ); ?></label>
     <input class="widefat" type="text" name="pirate-crew-designation" id="pirate-crew-designation" value="<?php echo esc_attr(get_post_meta($post->ID, 'pirate-crew-designation', true));?>"/>
 </p>
 <p>
@@ -10,7 +10,7 @@
 </div>
 <h3><?php _e('Additional Information (for Email, Telephone, Fax, etc)',$this->text_domain);?></h3>
 <div class="member-details-section">
-<table id="repeatable-fieldset-one" class="pirate-crew-sorable-table">
+<table id="repeatable-fieldset-one" class="picrew-sorable-table">
 	<thead>
 		<tr>
 			<td width="3%"></td>
@@ -44,11 +44,11 @@
 		</tr>
 	</tbody>
 </table>
-<p><a class="button pirate-crew-add-row" href="#" data-table="repeatable-fieldset-one"><?php _e('Add row',$this->text_domain);?></a></p>
+<p><a class="button picrew-add-row" href="#" data-table="repeatable-fieldset-one"><?php _e('Add row',$this->text_domain);?></a></p>
 </div>
-<h3><?php _e('Links (Twitter, Facebook, LinkedIn, etc)',$this->text_domain);?></h3>
+<h3><?php _e('Links (Twitter, LinkedIn, etc)',$this->text_domain);?></h3>
 <div class="member-details-section">
-<table id="repeatable-fieldset-two" class="pirate-crew-sorable-table">
+<table id="repeatable-fieldset-two" class="picrew-sorable-table">
 	<thead>
 		<tr>
 			<th>&nbsp;</th>
@@ -63,7 +63,7 @@
 		<tr>
 			<td><span class="dashicons dashicons-move"></span></td>
 			<td>
-				<?php $this->selectbuilder('pirate-crew-icon[]',$socialicons,$field['icon'],__('Select icon',$this->text_domain),'widefat pirate-crew-icon-select');?>
+				<?php $this->selectbuilder('pirate-crew-icon[]',$socialicons,$field['icon'],__('Select icon',$this->text_domain),'widefat picrew-icon-select');?>
 			</td>
 			<td><input type="text" placeholder="<?php _e('ex: http://www.twitter.com/piratenpartei',$this->text_domain);?>" class="widefat" name="pirate-crew-link[]" value="<?php if(isset($field['link'])) echo esc_attr( $field['link'] ); ?>"/></td>
 			<td><a class="button remove-row" href="#"><?php _e('Remove',$this->text_domain);?></a></td>
@@ -72,7 +72,7 @@
 		<tr>
 			<td><span class="dashicons dashicons-move"></span></td>
 			<td>
-				<?php $this->selectbuilder('pirate-crew-icon[]',$socialicons,'',__('Select icon',$this->text_domain),'widefat pirate-crew-icon-select');?>
+				<?php $this->selectbuilder('pirate-crew-icon[]',$socialicons,'',__('Select icon',$this->text_domain),'widefat picrew-icon-select');?>
 			</td>
 			<td><input type="text" placeholder="<?php _e('ex: http://www.twitter.com/piratenpartei',$this->text_domain);?>" class="widefat" name="pirate-crew-link[]" value=""/></td>
 			<td><a class="button remove-row" href="#"><?php _e('Remove',$this->text_domain);?></a></td>
@@ -88,5 +88,5 @@
 		</tr>
 	</tbody>
 </table>
-<p><a class="button pirate-crew-add-row" href="#" data-table="repeatable-fieldset-two"><?php _e('Add row',$this->text_domain);?></a></p>
+<p><a class="button picrew-add-row" href="#" data-table="repeatable-fieldset-two"><?php _e('Add row',$this->text_domain);?></a></p>
 </div>

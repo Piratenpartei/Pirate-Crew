@@ -4,8 +4,8 @@
 (function($) {
 	//Gridder configuration found at the end of jquery.gridder.js
     if( Modernizr.touchevents ) {
-        $('.pirate-crew-grid > .pirate-crew-grid-card > figure').on('touchend', function(e) {
-           if($(e.target).is('.pirate-crew-grid > .pirate-crew-grid-card > figure a') || $(e.target).is('.pirate-crew-grid > .pirate-crew-grid-card > figure a *')) return;
+        $('.picrew-grid > .picrew-grid-card > figure').on('touchend', function(e) {
+           if($(e.target).is('.picrew-grid > .picrew-grid-card > figure a') || $(e.target).is('.picrew-grid > .picrew-grid-card > figure a *')) return;
             e.preventDefault();
             $(this).toggleClass('cs-hover');
         });

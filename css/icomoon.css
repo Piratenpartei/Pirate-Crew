@@ -6,8 +6,8 @@
   font-style: normal;
 }
 
-[class^="pirate-crew-icon-"],
-[class*=" pirate-crew-icon-"] {
+[class^="picrew-icon-"],
+[class*=" picrew-icon-"] {
 
   /* use !important to prevent issues with browser extensions that change fonts */
   font-family: 'icomoon' !important;
@@ -21,208 +21,208 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.pirate-crew-icon-yelp:before {
+.picrew-icon-yelp:before {
   content: "\e900";
 }
-.pirate-crew-icon-flattr:before {
+.picrew-icon-flattr:before {
   content: "\e902";
 }
-.pirate-crew-icon-xing:before {
+.picrew-icon-xing:before {
   content: "\e903";
 }
-.pirate-crew-icon-xing2:before {
+.picrew-icon-xing2:before {
   content: "\e904";
 }
-.pirate-crew-icon-stumbleupon:before {
+.picrew-icon-stumbleupon:before {
   content: "\e905";
 }
-.pirate-crew-icon-stumbleupon2:before {
+.picrew-icon-stumbleupon2:before {
   content: "\e906";
 }
-.pirate-crew-icon-delicious:before {
+.picrew-icon-delicious:before {
   content: "\e907";
 }
-.pirate-crew-icon-lastfm:before {
+.picrew-icon-lastfm:before {
   content: "\e908";
 }
-.pirate-crew-icon-lastfm2:before {
+.picrew-icon-lastfm2:before {
   content: "\e909";
 }
-.pirate-crew-icon-hackernews:before {
+.picrew-icon-hackernews:before {
   content: "\e90a";
 }
-.pirate-crew-icon-reddit:before {
+.picrew-icon-reddit:before {
   content: "\e90b";
 }
-.pirate-crew-icon-soundcloud:before {
+.picrew-icon-soundcloud:before {
   content: "\e90c";
 }
-.pirate-crew-icon-soundcloud2:before {
+.picrew-icon-soundcloud2:before {
   content: "\e90d";
 }
-.pirate-crew-icon-yahoo:before {
+.picrew-icon-yahoo:before {
   content: "\e90e";
 }
-.pirate-crew-icon-blogger2:before {
+.picrew-icon-blogger2:before {
   content: "\e90f";
 }
-.pirate-crew-icon-ello:before {
+.picrew-icon-ello:before {
   content: "\e910";
 }
-.pirate-crew-icon-wordpress2:before {
+.picrew-icon-wordpress2:before {
   content: "\e911";
 }
-.pirate-crew-icon-steam:before {
+.picrew-icon-steam:before {
   content: "\e912";
 }
-.pirate-crew-icon-steam2:before {
+.picrew-icon-steam2:before {
   content: "\e913";
 }
-.pirate-crew-icon-500px:before {
+.picrew-icon-500px:before {
   content: "\e914";
 }
-.pirate-crew-icon-deviantart:before {
+.picrew-icon-deviantart:before {
   content: "\e915";
 }
-.pirate-crew-icon-twitch:before {
+.picrew-icon-twitch:before {
   content: "\e916";
 }
-.pirate-crew-icon-feed:before {
+.picrew-icon-feed:before {
   content: "\e917";
 }
-.pirate-crew-icon-feed2:before {
+.picrew-icon-feed2:before {
   content: "\e918";
 }
-.pirate-crew-icon-sina-weibo:before {
+.picrew-icon-sina-weibo:before {
   content: "\e919";
 }
-.pirate-crew-icon-renren:before {
+.picrew-icon-renren:before {
   content: "\e91a";
 }
-.pirate-crew-icon-vk:before {
+.picrew-icon-vk:before {
   content: "\e91b";
 }
-.pirate-crew-icon-vine:before {
+.picrew-icon-vine:before {
   content: "\e91c";
 }
-.pirate-crew-icon-telegram:before {
+.picrew-icon-telegram:before {
   content: "\e91d";
 }
-.pirate-crew-icon-spotify:before {
+.picrew-icon-spotify:before {
   content: "\e91e";
 }
-.pirate-crew-icon-mail2:before {
+.picrew-icon-mail2:before {
   content: "\e91f";
 }
-.pirate-crew-icon-mail3:before {
+.picrew-icon-mail3:before {
   content: "\e920";
 }
-.pirate-crew-icon-arrow-down:before {
+.picrew-icon-arrow-down:before {
   content: "\e60f";
 }
-.pirate-crew-icon-arrow-left:before {
+.picrew-icon-arrow-left:before {
   content: "\e610";
 }
-.pirate-crew-icon-arrow-right:before {
+.picrew-icon-arrow-right:before {
   content: "\e611";
 }
-.pirate-crew-icon-close:before {
+.picrew-icon-close:before {
   content: "\e612";
 }
-.pirate-crew-icon-github:before {
+.picrew-icon-github:before {
   content: "\e901";
 }
-.pirate-crew-icon-mail:before {
+.picrew-icon-mail:before {
   content: "\e945";
 }
-.pirate-crew-icon-link:before {
+.picrew-icon-link:before {
   content: "\e9cb";
 }
-.pirate-crew-icon-google-plus:before {
+.picrew-icon-google-plus:before {
   content: "\ea8b";
 }
-.pirate-crew-icon-google-plus2:before {
+.picrew-icon-google-plus2:before {
   content: "\ea8c";
 }
-.pirate-crew-icon-hangouts:before {
+.picrew-icon-hangouts:before {
   content: "\ea8e";
 }
-.pirate-crew-icon-google-drive:before {
+.picrew-icon-google-drive:before {
   content: "\ea8f";
 }
-.pirate-crew-icon-facebook:before {
+.picrew-icon-facebook:before {
   content: "\ea90";
 }
-.pirate-crew-icon-facebook2:before {
+.picrew-icon-facebook2:before {
   content: "\ea91";
 }
-.pirate-crew-icon-instagram:before {
+.picrew-icon-instagram:before {
   content: "\ea92";
 }
-.pirate-crew-icon-whatsapp:before {
+.picrew-icon-whatsapp:before {
   content: "\ea93";
 }
-.pirate-crew-icon-twitter:before {
+.picrew-icon-twitter:before {
   content: "\ea96";
 }
-.pirate-crew-icon-youtube:before {
+.picrew-icon-youtube:before {
   content: "\ea9d";
 }
-.pirate-crew-icon-vimeo:before {
+.picrew-icon-vimeo:before {
   content: "\eaa0";
 }
-.pirate-crew-icon-vimeo2:before {
+.picrew-icon-vimeo2:before {
   content: "\eaa1";
 }
-.pirate-crew-icon-flickr:before {
+.picrew-icon-flickr:before {
   content: "\eaa3";
 }
-.pirate-crew-icon-flickr2:before {
+.picrew-icon-flickr2:before {
   content: "\eaa4";
 }
-.pirate-crew-icon-dribbble:before {
+.picrew-icon-dribbble:before {
   content: "\eaa7";
 }
-.pirate-crew-icon-behance:before {
+.picrew-icon-behance:before {
   content: "\eaa8";
 }
-.pirate-crew-icon-behance2:before {
+.picrew-icon-behance2:before {
   content: "\eaa9";
 }
-.pirate-crew-icon-dropbox:before {
+.picrew-icon-dropbox:before {
   content: "\eaae";
 }
-.pirate-crew-icon-wordpress:before {
+.picrew-icon-wordpress:before {
   content: "\eab4";
 }
-.pirate-crew-icon-blogger:before {
+.picrew-icon-blogger:before {
   content: "\eab8";
 }
-.pirate-crew-icon-tumblr:before {
+.picrew-icon-tumblr:before {
   content: "\eab9";
 }
-.pirate-crew-icon-tumblr2:before {
+.picrew-icon-tumblr2:before {
   content: "\eaba";
 }
-.pirate-crew-icon-skype:before {
+.picrew-icon-skype:before {
   content: "\eac5";
 }
-.pirate-crew-icon-linkedin2:before {
+.picrew-icon-linkedin2:before {
   content: "\eac9";
 }
-.pirate-crew-icon-linkedin:before {
+.picrew-icon-linkedin:before {
   content: "\eaca";
 }
-.pirate-crew-icon-stackoverflow:before {
+.picrew-icon-stackoverflow:before {
   content: "\ead0";
 }
-.pirate-crew-icon-pinterest2:before {
+.picrew-icon-pinterest2:before {
   content: "\ead1";
 }
-.pirate-crew-icon-pinterest:before {
+.picrew-icon-pinterest:before {
   content: "\ead2";
 }
-.pirate-crew-icon-foursquare:before {
+.picrew-icon-foursquare:before {
   content: "\ead6";
 }
 
