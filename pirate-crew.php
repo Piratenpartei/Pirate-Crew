@@ -70,7 +70,7 @@ if (!class_exists('Pirate_Crew')):
                 add_image_size('pirate_crew', 500, 500, true);
             }
         }
-       /*--------------------------------------------------------------------*/
+        /*--------------------------------------------------------------------*/
         /* Defines Shortcodes
         /*--------------------------------------------------------------------*/
         public function pirate_crew_shortcodes($atts) {
@@ -99,18 +99,17 @@ if (!class_exists('Pirate_Crew')):
                 return ob_get_clean();
             }
         }
-        /**
-         * Register front scripts
-         *  @since    1.0.0
-         */
+        /*--------------------------------------------------------------------*/
+        /* Register Scripts and CSS
+        /*--------------------------------------------------------------------*/
         public function embed_front_script_styles() {
             wp_enqueue_script('pirate-crew', plugins_url('js/team.min.js', $this->settings['plugin_file']), array('jquery'), $this->settings['plugin_version'], true); 
             wp_enqueue_style('pirate-crew', plugins_url('css/team.min.css', $this->settings['plugin_file']), false, $this->settings['plugin_version'], 'all');
         }
-        /**
-         *  Create custom post type
-         *  @since    1.0.0
-         */
+
+        /*--------------------------------------------------------------------*/
+        /* Create Custom Post Type
+        /*--------------------------------------------------------------------*/        
         public function create_member_support() {
             // Create pirate_crew_member post type
             if (post_type_exists("pirate_crew_member")) {
@@ -172,10 +171,10 @@ if (!class_exists('Pirate_Crew')):
             );
             register_post_type('pirate_crew', $cp_args);
         }
-        /**
-         * Initiate admin functions.
-         * @since 1.0
-         */
+
+        /*--------------------------------------------------------------------*/
+        /* Admin Styles
+        /*--------------------------------------------------------------------*/        
         public function pirate_crew_backend() {
             if (is_admin()) {
                 add_action('add_meta_boxes', array( $this, 'register_metaboxes' ));
@@ -190,10 +189,9 @@ if (!class_exists('Pirate_Crew')):
                 add_filter('admin_post_thumbnail_size',  array($this,'custom_admin_thumb_size'));
             }
         }
-        /**
-         * Custom thumbnail size for pirate_crew_member
-         * @since 1.0
-         */
+        /*--------------------------------------------------------------------*/
+        /* Admin Thumb SIze
+        /*--------------------------------------------------------------------*/
         function custom_admin_thumb_size($thumb_size){
             global $post_type,$post;
             if($post_type == 'pirate_crew_member'){
@@ -202,24 +200,22 @@ if (!class_exists('Pirate_Crew')):
             return $thumb_size; 
         }
        
-        /**
-         * Custom column on member table.
-         * @since 1.0
-         */
+        /*--------------------------------------------------------------------*/
+        /* Crew Data
+        /*--------------------------------------------------------------------*/
         function custom_columns_member($columns){
             $columns = array(
-                'cb' => '<input type="checkbox" />',
-                'title' => __('Name',$this->text_domain),
-                'featured_image' => __('Photo',$this->text_domain),
-                'designation' => __('Designation',$this->text_domain),
-                'date' => 'Date'
+                'cb'                => '<input type="checkbox" />',
+                'title'             => __('Name',$this->text_domain),
+                'featured_image'    => __('Photo',$this->text_domain),
+                'designation'       => __('Position',$this->text_domain),
+                'date'              => 'Date'
              );
             return $columns;
         }
-        /**
-         * Custom member table data.
-         * @since 1.0
-         */
+        /*--------------------------------------------------------------------*/
+        /* Get Crew Member Data
+        /*--------------------------------------------------------------------*/
         function custom_columns_member_data($column,$post_ID){
             $options = $this->get_options('pirate_crew_member',$post_ID );
             switch ( $column ) {
@@ -237,11 +233,11 @@ if (!class_exists('Pirate_Crew')):
          */
         function custom_columns_team($columns){
             $columns = array(
-                'cb' => '<input type="checkbox" />',
-                'title' => __('Name',$this->text_domain),
-                'members' => __('Members',$this->text_domain),
-                'preset' => __('Preset',$this->text_domain),
-                'style' => __('Style',$this->text_domain),
+                'cb'        => '<input type="checkbox" />',
+                'title'     => __('Name',$this->text_domain),
+                'members'   => __('Members',$this->text_domain),
+                'preset'    => __('Preset',$this->text_domain),
+                'style'     => __('Style',$this->text_domain),
                 'shortcode' =>__('Shortcode',$this->text_domain)
              );
             return $columns;
@@ -278,10 +274,9 @@ if (!class_exists('Pirate_Crew')):
             }
             return;
         }
-        /**
-         * Loads meta box helper scripts
-         * since 1.0
-         */
+        /*--------------------------------------------------------------------*/
+        /* Meta Boxes
+        /*--------------------------------------------------------------------*/
         public function meta_box_scripts() {
             global $pagenow, $typenow, $post;
             if (empty($typenow) && !empty($_GET['post'])) {
@@ -297,29 +292,23 @@ if (!class_exists('Pirate_Crew')):
             }
             
         }
-        /**
-         * Adding submenu items
-         *  @since    1.0.0
-         */
+        /*--------------------------------------------------------------------*/
+        /* Add Submenu Items
+        /*--------------------------------------------------------------------*/
         public function add_submenu_items() {
             add_submenu_page('edit.php?post_type=pirate_crew_member', __('Add Group', $this->text_domain), __('Add Team', $this->text_domain), 'manage_options', 'post-new.php?post_type=pirate_crew');
         }
-        /**
-         * Register meta box
-         *  @since    1.0.0
-         */
+        /*--------------------------------------------------------------------*/
+        /* Register metaboxes
+        /*--------------------------------------------------------------------*/
         public function register_metaboxes()  {
             add_meta_box('member_details', __('Member Details', $this->text_domain), array( $this, 'member_details_meta' ), 'pirate_crew_member');
             add_meta_box('team_details', __('Group Details', $this->text_domain), array( $this, 'team_details_meta' ), 'pirate_crew', 'normal', 'high');
         }
-       
-        /**
-         * Meta box display callback - Member details.
-         * @since    1.0.0
-         * @param WP_Post $post Current post object.
-         */
-        public function member_details_meta($post)
-        {
+        /*--------------------------------------------------------------------*/
+        /* Metabox for extra data of crew member
+        /*--------------------------------------------------------------------*/
+        public function member_details_meta($post) {
             wp_nonce_field(basename(__FILE__), 'pirate_crew_meta_details');
             $pirate_crew_contact = get_post_meta($post->ID, 'pirate_crew_contact', true);
             $pirate_crew_social  = get_post_meta($post->ID, 'pirate_crew_social', true);
@@ -344,8 +333,7 @@ if (!class_exists('Pirate_Crew')):
          * @since    1.0.0
          * @param WP_Post $post Current post object.
          */
-        public function team_details_meta($post)
-        {
+        public function team_details_meta($post)  {
             wp_nonce_field(basename(__FILE__), 'pirate_crew_meta_details');
             $args         = array(
                 'post_type' => 'pirate_crew_member',
@@ -353,15 +341,12 @@ if (!class_exists('Pirate_Crew')):
             );
             $members      = new WP_Query($args);
             $options      = $this->get_options('pirate_crew', $post->ID);
-            $defaultimage = $this->settings['plugin_url'] . 'images/default-user.png';
+            $defaultimage = $this->settings['plugin_url'] . 'images/default-member.jpg';
             include $this->settings['plugin_path'] . 'includes/team-details.php';
         }
-        /** 
-         * Save metabox
-         * @param  Int $post_id id of the post
-         * @param  Object $post Post Object
-         * @since 1.0
-         */
+        /*--------------------------------------------------------------------*/
+        /*Save Metabox Data
+        /*--------------------------------------------------------------------*/
         public function save_metabox_data($post_id, $post) {
             if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
                 return;
@@ -504,14 +489,10 @@ if (!class_exists('Pirate_Crew')):
             }
             return $options[$postype];
         }
-        /**
-         * Get team thumbnail
-         * @param  Int $team_id  Post id of tram
-         * @param  string $thumbnail thumbnail size
-         * @since   1.0
-         */
-        public function pirate_team_get_thumbnail($team_id, $thumbnail = "pirate_crew")
-        {
+        /*--------------------------------------------------------------------*/
+        /* Get Thumbnail or default
+        /*--------------------------------------------------------------------*/
+        public function pirate_team_get_thumbnail($team_id, $thumbnail = "pirate_crew") {
             $defaultimage = $this->settings['plugin_url'] . 'images/default-member.jpg';
             $member_image = get_post_thumbnail_id($team_id);
             if ($member_image) {
@@ -541,8 +522,7 @@ if (!class_exists('Pirate_Crew')):
          * @param  Array $class classnames
          * @since   1.0
          */
-        public function addclass($class)
-        {
+        public function addclass($class) {
             return implode(' ', $class);
         }
         /**
@@ -558,8 +538,7 @@ if (!class_exists('Pirate_Crew')):
          * Print the meta data after checking it's existence
          * @since   1.0
          */
-        public function checkprint($template, $value, $return = false)
-        {
+        public function checkprint($template, $value, $return = false) {
             if ($value) {
                 if ($return) {
                     return sprintf($template, $value);
@@ -574,6 +553,12 @@ function pirate_crew_activation(){
     Pirate_Crew::get_instance();
 }
 
-// Plugin activation hook
+/*--------------------------------------------------------------------*/
+/* Activates Instance
+/*--------------------------------------------------------------------*/
 add_action( 'plugins_loaded', 'pirate_crew_activation' );
 endif;  
+
+/*--------------------------------------------------------------------*/
+/* The end of this file as you know it
+/*--------------------------------------------------------------------*/
