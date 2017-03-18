@@ -507,8 +507,7 @@ if (!class_exists('Pirate_Crew')):
          * Item stle generator
          * @since   1.0
          */
-        public function item_style($options, $custom = "")
-        {
+        public function item_style($options, $custom = "") {
             $style = array(
                 $options['team-style'] . '-style',
                 $options['preset'],
