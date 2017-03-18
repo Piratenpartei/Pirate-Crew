@@ -530,8 +530,7 @@ if (!class_exists('Pirate_Crew')):
          * @param  Array $id 
          * @since   1.0
          */
-        public function add_id($id)
-        {
+        public function add_id($id) {
             return implode('-', $id);
         }
         /**
