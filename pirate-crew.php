@@ -99,6 +99,33 @@ if (!class_exists('Pirate_Crew')):
                 return ob_get_clean();
             }
         }
+        
+         public function pirate_team_member_shortcode($atts) {
+            extract(shortcode_atts(array(
+                'id' => false
+            ), $atts));
+            $options = $this->get_options('pirate_crew_member', $id);
+            if (!$options) {
+                return '<div class="pirate-crew-error">' . __('Pirate not found', $this->text_domain) . '</div>';
+            }
+
+            $template = $this->settings['plugin_path'] . 'templates/pirate-single.php';
+            if (file_exists($template)) {
+                ob_start();
+                $teamargs = array(
+                    'orderby' => 'post__in',
+                    'post_type' => 'pirate_crew_member',
+                    'post__in' => $options['memberlist'],
+                    'posts_per_page' => -1 ,
+                );
+                $team     = new WP_Query($teamargs);
+                include $template;
+                wp_reset_postdata();
+                return ob_get_clean();
+            }
+        }
+        
+        
         /*--------------------------------------------------------------------*/
         /* Register Scripts and CSS
         /*--------------------------------------------------------------------*/
@@ -142,6 +169,8 @@ if (!class_exists('Pirate_Crew')):
                 'menu_icon' => 'dashicons-admin-users'
             );
             register_post_type('pirate_crew_member', $cp_args);
+            
+            
             if (post_type_exists("pirate_crew")) {
                 return;
             }
@@ -264,13 +293,14 @@ if (!class_exists('Pirate_Crew')):
                 break;
             }
         }
-        /**
-         * Shortcode preview on team edit page
-         * @since 1.0
-         */
+       /*--------------------------------------------------------------------*/
+        /* Helper for Shortcodes
+        /*--------------------------------------------------------------------*/
         public function shortcode_preview($post) {
             if ('pirate_crew' == $post->post_type && 'publish' == $post->post_status) {
                 printf('<p>%1$s: <code>[crew id="%2$s"]</code><button id="copy-picrew" type="button" data-clipboard-text="[crew id=&quot;%2$s&quot;]" class="button">%3$s</button></p>', __("Shortcode", $this->text_domain), $post->ID, __("Copy", $this->text_domain));
+            } elseif ('pirate_crew_member' == $post->post_type && 'publish' == $post->post_status) {
+                printf('<p>%1$s: <code>[pirate id="%2$s"]</code><button id="copy-picrew" type="button" data-clipboard-text="[pirate id=&quot;%2$s&quot;]" class="button">%3$s</button></p>', __("Shortcode", $this->text_domain), $post->ID, __("Copy", $this->text_domain));
             }
             return;
         }
@@ -336,8 +366,8 @@ if (!class_exists('Pirate_Crew')):
         public function team_details_meta($post)  {
             wp_nonce_field(basename(__FILE__), 'pirate_crew_meta_details');
             $args         = array(
-                'post_type' => 'pirate_crew_member',
-                'posts_per_page' => -1
+                    'post_type'         => 'pirate_crew_member',
+                    'posts_per_page'    => -1
             );
             $members      = new WP_Query($args);
             $options      = $this->get_options('pirate_crew', $post->ID);
