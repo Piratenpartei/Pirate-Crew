@@ -1,0 +1,68 @@
+/*
+* Variables
+*/
+
+$color_1: #aaa;
+$color_2: #333;
+$color_3: #1f1f1f;
+$color_4: #000;
+$color_5: #fff;
+$color_6: #111;
+$font_family_1: 'icomoon';
+$background_color_1: rgba(113, 113, 113, 0.04);
+$background_color_2: #eee;
+
+
+/****************** Presets ***********************/
+
+@keyframes "DownMove" {
+	0% {
+		top: 50%;
+	}
+	5% {
+		top: 60%;
+	}
+	10% {
+		top: 50%;
+	}
+	15% {
+		top: 60%;
+	}
+	20% {
+		top: 50%;
+	}
+}
+@-webkit-keyframes "DownMove" {
+	0% {
+		top: 50%;
+	}
+	5% {
+		top: 60%;
+	}
+	10% {
+		top: 50%;
+	}
+	15% {
+		top: 60%;
+	}
+	20% {
+		top: 50%;
+	}
+}
+@-moz-keyframes "DownMove" {
+	0% {
+		top: 50%;
+	}
+	5% {
+		top: 60%;
+	}
+	10% {
+		top: 50%;
+	}
+	15% {
+		top: 60%;
+	}
+	20% {
+		top: 50%;
+	}
+}

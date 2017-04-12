@@ -3,7 +3,7 @@
 Plugin Name: Pirate Crew
 Plugin URI: http://github.com/Piratenpartei/Pirate-Crew
 Description: Defines crew (people) list and cards for websites in pirate style 
-Version: 1.0.2
+Version: 1.0.3
 Author: xwolf
 Author URI: http://www.xwolf.de
 License: GPL
@@ -37,7 +37,7 @@ if (!class_exists('Pirate_Crew')):
                 'plugin_url'        => plugin_dir_url(__FILE__),
                 'plugin_base'       => dirname(plugin_basename(__FILE__)),
                 'plugin_file'       => __FILE__,
-                'plugin_version'    => '1.0.2',
+                'plugin_version'    => '1.0.3',
                 'text_domain'       => 'pirate-crew'
             );
             $this->pirate_crew_load_textdomain();
@@ -130,8 +130,11 @@ if (!class_exists('Pirate_Crew')):
         /* Register Scripts and CSS
         /*--------------------------------------------------------------------*/
         public function embed_front_script_styles() {
-            wp_enqueue_script('pirate-crew', plugins_url('js/team.min.js', $this->settings['plugin_file']), array('jquery'), $this->settings['plugin_version'], true); 
-            wp_enqueue_style('pirate-crew', plugins_url('css/team.min.css', $this->settings['plugin_file']), false, $this->settings['plugin_version'], 'all');
+	    $my_theme = wp_get_theme();
+	    if ($my_theme->get( 'Name' ) != 'Pirate Rogue') {
+		wp_enqueue_script('pirate-crew', plugins_url('js/team.min.js', $this->settings['plugin_file']), array('jquery'), $this->settings['plugin_version'], true); 	   
+		wp_enqueue_style('pirate-crew', plugins_url('css/team.css', $this->settings['plugin_file']), false, $this->settings['plugin_version'], 'all');
+	    }
         }
 
         /*--------------------------------------------------------------------*/
