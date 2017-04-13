@@ -9,7 +9,7 @@
 				<?php _e('Name'); ?>
 			</div><!-- .picrew-table-cell -->
 			<div class="picrew-table-cell">
-				<?php _e('Designaion'); ?>
+				<?php _e('Position'); ?>
 			</div><!-- .picrew-table-cell -->
 			<div class="picrew-table-cell">
 				<?php _e('Short Description'); ?>
@@ -20,7 +20,7 @@
 		</div>
 		<?php 
 		while ($team->have_posts()): $team->the_post();
-		$teamdata = $this->get_options('pirate_crew_member', $team->post->ID);
+		    $teamdata = $this->get_options('pirate_crew_member', $team->post->ID);
 		?>
 		<div id="<?php echo $this->add_id(array('pirate_crew_member',$id,$team->post->ID));?>" class="picrew-table-row">
 			<div class="picrew-table-cell picrew-table-image">

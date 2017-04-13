@@ -1,6 +1,6 @@
 <div class="member-details-section">
 <p>
-    <label for="pirate-crew-designation"><?php _e( "Designation", $this->text_domain ); ?></label>
+    <label for="pirate-crew-designation"><?php _e( "Position", $this->text_domain ); ?></label>
     <input class="widefat" type="text" name="pirate-crew-designation" id="pirate-crew-designation" value="<?php echo esc_attr(get_post_meta($post->ID, 'pirate-crew-designation', true));?>"/>
 </p>
 <p>
