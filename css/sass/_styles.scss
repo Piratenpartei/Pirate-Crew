@@ -919,6 +919,14 @@ figcaption {
 		}
 	}
 }
+
+.pirate-crew-single {
+    @extend .picrew-grid-wrapper;
+    .picrew-grid {
+	min-width: 260px;
+    }
+}
+
 @media (max-width:1230px) {
 	.picrew-grid-wrapper {
 		.grid-5-col {

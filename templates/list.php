@@ -14,8 +14,10 @@
                                     </div> <!-- .picrew-personal-info -->
                                     <div class="picrew-contact-info">
                                         <?php
-                                                    the_content();
+                                                   
                                                         include( $this->settings['plugin_path'].'templates/partials/social.php' );
+							
+							 the_content();
                                                 ?>
                                     </div> <!-- .picrew-contact-info -->
                                  </figcaption>

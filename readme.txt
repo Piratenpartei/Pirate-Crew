@@ -1,7 +1,7 @@
 === Pirate Crew ===
 Contributors: xwolf
 Tags: team, crew, pirates
-Requires at least: 4.3
+Requires at least: 4.5
 Tested up to: 4.7
 Stable tag: trunk
 License: GPLv2 or later

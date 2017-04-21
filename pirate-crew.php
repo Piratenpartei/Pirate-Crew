@@ -3,15 +3,39 @@
 Plugin Name: Pirate Crew
 Plugin URI: http://github.com/Piratenpartei/Pirate-Crew
 Description: Defines crew (people) list and cards for websites in pirate style 
-Version: 1.0.4
+Version: 1.0.5
 Author: xwolf
 Author URI: http://www.xwolf.de
 License: GPL
 */
 
+/*
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ */
+
 if (!defined('ABSPATH')) {
     exit;
 }
+
+
+
+add_action('plugins_loaded', array('Pirate_Crew', 'instance'));
+register_activation_hook(__FILE__, array('Pirate_Crew', 'activation'));
+register_deactivation_hook(__FILE__, array('Pirate_Crew', 'deactivation'));
+
+
 
 
 if (!class_exists('Pirate_Crew')): 
@@ -19,47 +43,102 @@ if (!class_exists('Pirate_Crew')):
 /* Sets up main class
 /*-----------------------------------------------------------------------------------*/
     class Pirate_Crew {
+    
+	const version = '1.0.5';
+	const php_version = '5.6'; // Minimal erforderliche PHP-Version
+	const wp_version = '4.5'; // Minimal erforderliche WordPress-Version
+	
+	private $text_domain = 'pirate-crew';
+	
+	public static $themeswithowncss = array('Pirate Rogue');
         private static $instance = null;
-        private $text_domain = 'pirate-crew';
+       
         private $settings;
         
-        public static function get_instance() {
-            if (null == self::$instance) {
-                self::$instance = new self;
-            }
-            return self::$instance;
-        }
+	/*--------------------------------------------------------------------*/
+        /* Define Instance
+        /*--------------------------------------------------------------------*/
+	public static function instance() {
+	    if (null == self::$instance) {
+		self::$instance = new self;
+	    }
 
-        public function __construct()
-        {
+	    return self::$instance;
+	}
+	
+	/*--------------------------------------------------------------------*/
+        /* Contstructor
+        /*--------------------------------------------------------------------*/
+        public function __construct()  {
             $this->settings = array(
                 'plugin_path'       => plugin_dir_path(__FILE__),
                 'plugin_url'        => plugin_dir_url(__FILE__),
                 'plugin_base'       => dirname(plugin_basename(__FILE__)),
                 'plugin_file'       => __FILE__,
-                'plugin_version'    => '1.0.4',
-                'text_domain'       => 'pirate-crew'
+                'plugin_version'    => self::version, // '1.0.4',
+                'text_domain'       => $this->text_domain, // 'pirate-crew',
+		'image_size_width'  => 500,
+		'image_size_height' => 500,
+		'image_size_crop'   => true,
             );
             $this->pirate_crew_load_textdomain();
             $this->pirate_crew_start();
+	   
+	    
             $this->pirate_crew_backend();
+	    define('PIRATE_CREW_TEXTDOMAIN',  $this->text_domain);
+	    
+	    
+	    $this->pirate_crew_add_shortcodes();
         }
-
+  
+	
         /*--------------------------------------------------------------------*/
         /* Load Textdomain
         /*--------------------------------------------------------------------*/
         public function pirate_crew_load_textdomain() {
             load_plugin_textdomain($this->text_domain, false, $this->settings['plugin_base'] . '/language');
         }
+	
+	/*--------------------------------------------------------------------*/
+        /* Activation
+        /*--------------------------------------------------------------------*/
+	public static function activation() {
+	    self::version_compare();
+	    flush_rewrite_rules(); // Flush Rewrite-Regeln, so dass CPT und CT auf dem Front-End sofort vorhanden sind 
+	}
+	/*--------------------------------------------------------------------*/
+        /* deactivate plugin
+        /*--------------------------------------------------------------------*/
+	public static function deactivation() {       
+	    flush_rewrite_rules(); // Flush Rewrite-Regeln, so dass CPT und CT auf dem Front-End sofort vorhanden sind   
+	}
 
+	/*--------------------------------------------------------------------*/
+        /* Checking Versions
+        /*--------------------------------------------------------------------*/
+	private static function version_compare() {
+		$error = '';
+
+		if (version_compare(PHP_VERSION, self::php_version, '<')) {
+		    $error = sprintf(__('Your PHP-Version %s is old. Please update at least to version %s.', $this->text_domain), PHP_VERSION, self::php_version);
+		}
+
+		if (version_compare($GLOBALS['wp_version'], self::wp_version, '<')) {
+		    $error = sprintf(__('Your Wordpress-Version %s is too old. Please upgrade at least to version %s.', $this->text_domain), $GLOBALS['wp_version'], self::wp_version);
+		}
+
+		if (!empty($error)) {
+		    deactivate_plugins(plugin_basename(__FILE__), false, true);
+		    wp_die($error);
+		}
+	    }
         /*--------------------------------------------------------------------*/
         /* Main
         /*--------------------------------------------------------------------*/        
         public function pirate_crew_start() {
             add_action('init', array( $this, 'create_member_support' ));
             add_action('init', array( $this, 'pirate_crew_image_size' ));
-            add_shortcode('crew', array( $this, 'pirate_crew_shortcodes' ));
-	    add_shortcode('pirate', array( $this, 'pirate_team_member_shortcode' ));
             add_action('wp_enqueue_scripts', array( $this, 'embed_front_script_styles' ));
         }
 
@@ -68,101 +147,29 @@ if (!class_exists('Pirate_Crew')):
         /*--------------------------------------------------------------------*/
         public function pirate_crew_image_size(){
             if ( function_exists( 'add_image_size' ) ) {
-                add_image_size('pirate_crew', 500, 500, true);
+                add_image_size('pirate_crew', $this->settings['image_size_width'], $this->settings['image_size_height'], $this->settings['image_size_crop']);
             }
         }
+	
         /*--------------------------------------------------------------------*/
         /* Defines Shortcodes
-        /*--------------------------------------------------------------------*/
-        public function pirate_crew_shortcodes($atts) {
-            extract(shortcode_atts(array(
-                'id' => false
-            ), $atts));
-            $options = $this->get_options('pirate_crew', $id);
-            if (!$options) {
-                return '<div class="pirate-crew-error">' . __('Crew not found', $this->text_domain) . '</div>';
-            }
-            if (empty($options['memberlist'])) {
-                return '<div class="pirate-crew-error">' . __('No members found', $this->text_domain) . '</div>';
-            }
-            $template = $this->settings['plugin_path'] . 'templates/' . $options['team-style'] . '.php';
+        /*--------------------------------------------------------------------*/	
+	
+	public  function pirate_crew_add_shortcodes() {     
+	    add_shortcode('pirate', array( $this, 'pirate_team_member_shortcode' ));
+	    add_shortcode('crew', array( $this, 'pirate_crew_shortcodes' ));
+	}
+	
+	
 
-         if (file_exists($template)) {
-               
-                $teamargs = array(
-                    'orderby' => 'post__in',
-                    'post_type' => 'pirate_crew_member',
-                    'post__in' => $options['memberlist'],
-                    'posts_per_page' => -1 ,
-                );
-                $team     = new WP_Query($teamargs);
-		ob_start();
-                include $template;
-		$var = ob_get_contents();
-		ob_end_clean();
-                // wp_reset_postdata();
-		return $var;
-            }
+        public function pirate_crew_shortcodes($atts) {
+            include('shortcodes/crew.php');  
+	    return $out;
         }
         
          public function pirate_team_member_shortcode($atts) {
-            extract(shortcode_atts(array(
-                'id' => false,
-		'alignclass'	=> ''
-            ), $atts));
-	    
-	    $id = intval($id);
-	    $class = pirate_crew_sanitize_shortcodeclass($alignclass);
-	    
-	   $post = get_post($id);
-           if ($post && $post->post_type == 'pirate_crew_member') {
-			    
-		$out = '';
-		$flip = false;
-		$flipclass = array("picrew-figcaption");
-	  
-
-		$out .= '<div id="'.$this->add_id(array('pirate-crew',$id)).'" class="picrew-grid-wrapper picrew-single '.$class.'">';
-	        $out .= '<div class="picrew-grid cards-style style-1">';
-		$teamdata = $this->get_options('pirate_crew_member', $post->ID);
-		$out .=  '<div id="'.$this->add_id(array('pirate_crew_member',$id,$post->ID)).'" class="picrew-grid-card" style="width: 320px;">';
-		$out .= '<figure>';
-		$out .= '<img src="'.$this->pirate_team_get_thumbnail($post->ID).'" alt="">';
-		$out .= '<figcaption class="'.$this->addclass($flipclass).'">';
-		$out .= '<div class="picrew-personal-info">';
-		$out .= '<h3>'.get_the_title($post->ID).'</h3>';
-		$out .= '<span>'.$teamdata['pirate-crew-designation'].'</span>';
-		$out .= '</div> <!-- .picrew-personal-info -->';
-		$out .= '<div class="picrew-contact-info">';
-
-		$out .= '<nav class="picrew-social-icons">';
-		    foreach ($teamdata['pirate_crew_social'] as $social) {
-			if (isset($social['link'])) {
-			    $out .= '<span><a href="' . esc_url($social['link']) . '"><i class="picrew-icon-' . $social['icon'] . '" aria-hidden="true"></i><span class="screen-reader-text">'. $social['icon'].'</span></a></span>';
-			}
-		    }
-		$out .= '</nav>';
-
-
-		$out .= '</div> <!-- .picrew-contact-info -->';
-		$out .= '</figcaption>';
-		$out .= '</figure></div>';
-
-		$out .= '</div>';
-		$out .= '</div>';
-
-
-		wp_reset_postdata();
-		return $out;
-		
-		
-	   } else {
-	        return '<div class="pirate-crew-error">' . __('Pirate not found', $this->text_domain) . '</div>';
-	   }
-	    
-
-	    
-
+	    require('shortcodes/member.php');    
+	    return $out;
         }
         
 
@@ -170,8 +177,12 @@ if (!class_exists('Pirate_Crew')):
         /* Register Scripts and CSS
         /*--------------------------------------------------------------------*/
         public function embed_front_script_styles() {
+	     
 	    $my_theme = wp_get_theme();
-	    if ($my_theme->get( 'Name' ) != 'Pirate Rogue') {
+	    $my_theme_name = $my_theme->get( 'Name' ); 
+		     
+		     
+	    if (!in_array($my_theme_name, Pirate_Crew::$themeswithowncss)) {
 		wp_enqueue_script('pirate-crew', plugins_url('js/team.min.js', $this->settings['plugin_file']), array('jquery'), $this->settings['plugin_version'], true); 	   
 		wp_enqueue_style('pirate-crew', plugins_url('css/team.css', $this->settings['plugin_file']), false, $this->settings['plugin_version'], 'all');
 	    }
@@ -363,6 +374,8 @@ if (!class_exists('Pirate_Crew')):
                 wp_enqueue_style('select2', plugins_url('css/select2.min.css', $this->settings['plugin_file']), false, $this->settings['plugin_version'], 'all');
                 wp_enqueue_style('pirate-crew-icomoon-css', plugins_url('css/icomoon.css', $this->settings['plugin_file']), false, $this->settings['plugin_version'], 'all');
             }
+	    
+	
             
         }
         /*--------------------------------------------------------------------*/
@@ -377,7 +390,8 @@ if (!class_exists('Pirate_Crew')):
         public function register_metaboxes()  {
             add_meta_box('member_details', __('Member Details', $this->text_domain), array( $this, 'member_details_meta' ), 'pirate_crew_member');
             add_meta_box('team_details', __('Group Details', $this->text_domain), array( $this, 'team_details_meta' ), 'pirate_crew', 'normal', 'high');
-        }
+            add_meta_box('team_details', __('Pirate Crew Member', $this->text_domain), array( $this, 'member_post_insert' ), 'post', 'normal', 'high');
+	}
         /*--------------------------------------------------------------------*/
         /* Metabox for extra data of crew member
         /*--------------------------------------------------------------------*/
@@ -390,14 +404,14 @@ if (!class_exists('Pirate_Crew')):
                 'hangouts', 'google-drive', 
                 'facebook2', 'instagram', 'whatsapp', 
                 'youtube', 'vimeo', 'vimeo2', 
-                'flickr', 'flickr2', 'dribbble', 'behance',
+                'flickr', 'dribbble', 'behance',
                 'behance2', 'dropbox', 'wordpress', 'blogger', 
-                'tumblr', 'tumblr2', 'skype', 'linkedin2', 
+                'tumblr', 'skype', 'linkedin2', 
                 'linkedin', 'stackoverflow', 'pinterest2', 'pinterest', 'foursquare',
-                'github', 'flattr', 'xing', 'xing2', 'stumbleupon', 'stumbleupon2',
-                'delicious', 'lastfm', 'lastfm2', 'hackernews', 'reddit', 'soundcloud', 
-                'soundcloud2', 'yahoo', 'blogger2', 'ello', 'wordpress2', 'steam', 'steam2',
-                '500px', 'deviantart', 'twitch', 'feed', 'feed2', 'sina-weibo', 'renren', 
+                'github', 'flattr', 'xing', 'stumbleupon', 'stumbleupon2',
+                'delicious', 'lastfm', 'hackernews', 'reddit', 'soundcloud', 
+                'soundcloud2', 'yahoo', 'ello', 'wordpress2', 'steam', 'steam2',
+                '500px', 'deviantart', 'twitch', 'feed', 'sina-weibo', 'renren', 
                 'vk', 'vine', 'telegram', 'spotify');
             include $this->settings['plugin_path'] . 'includes/member-details.php';
         }
@@ -417,6 +431,28 @@ if (!class_exists('Pirate_Crew')):
             $defaultimage = $this->settings['plugin_url'] . 'images/default-member.jpg';
             include $this->settings['plugin_path'] . 'includes/team-details.php';
         }
+	
+	 /**
+         * Meta box display callback - Team details.
+         * @since    1.0.0
+         * @param WP_Post $post Current post object.
+         */
+        public function member_post_insert($post)  {
+            wp_nonce_field(basename(__FILE__), 'pirate_crew_meta_details');
+            $args         = array(
+                    'post_type'         => 'pirate_crew_member',
+                    'posts_per_page'    => -1,
+		    'orderby' => 'title',
+		    'order'   => 'ASC',
+            );
+            $members      = new WP_Query($args);
+	    
+	    $preauthor =  get_post_meta( $post->ID, 'pirate_crew_member_id', true );
+	    
+            $defaultimage = $this->settings['plugin_url'] . 'images/default-member.jpg';
+            include $this->settings['plugin_path'] . 'includes/member-post-insert.php';
+        }
+	
         /*--------------------------------------------------------------------*/
         /*Save Metabox Data
         /*--------------------------------------------------------------------*/
@@ -469,7 +505,9 @@ if (!class_exists('Pirate_Crew')):
                 }
             } elseif ($post->post_type == 'pirate_crew') {
                 $team_meta = array('memberlist', 'team-style', 'preset', 'columns');
-            }
+            } elseif ($post->post_type == 'post') {
+		$team_meta = array('pirate_crew_member_id');
+	    }
             foreach ($team_meta as $meta_key) {
                 $olddata = get_post_meta($post_id, $meta_key, true);
                 $newdata = array();
@@ -620,25 +658,34 @@ if (!class_exists('Pirate_Crew')):
             }
         }
     }
-function pirate_crew_activation(){   
-    Pirate_Crew::get_instance();
-}
-
-/*--------------------------------------------------------------------*/
-/* Activates Instance
-/*--------------------------------------------------------------------*/
-add_action( 'plugins_loaded', 'pirate_crew_activation' );
 endif;  
 /*--------------------------------------------------------------------*/
-/* Activates Instance
+/* Sanitize class for shortcodes 
 /*--------------------------------------------------------------------*/
 function pirate_crew_sanitize_shortcodeclass( $pirate_crew_class ) {
 	if ( ! in_array( $pirate_crew_class, array( 'alignleft', 'alignright', 'aligncenter' ) ) ) {
-		$pirate_crew_class = '';
+		$pirate_crew_class = 'alignleft';
 	}
 	return $pirate_crew_class;
 }
-
+/*--------------------------------------------------------------------*/
+/* Sanitize format for shortcodes 
+/*--------------------------------------------------------------------*/
+function pirate_crew_sanitize_shortcodeformat( $pirate_crew_format ) {
+	if ( ! in_array( $pirate_crew_format, array( 'card', 'list') ) ) {
+		$pirate_crew_format = 'card';
+	}
+	return $pirate_crew_format;
+}
+/*--------------------------------------------------------------------*/
+/* Sanitize format for member shortcode, list style 
+/*--------------------------------------------------------------------*/
+function pirate_crew_sanitize_shortcodestyle( $pirate_crew_style ) {
+	if ( ! in_array( $pirate_crew_style, array( 'style1', 'style2', 'style3', 'style4') ) ) {
+		$pirate_crew_style = 'style1';
+	}
+	return $pirate_crew_style;
+}
 /*--------------------------------------------------------------------*/
 /* The end of this file as you know it
 /*--------------------------------------------------------------------*/
