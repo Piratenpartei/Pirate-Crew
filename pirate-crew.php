@@ -3,7 +3,7 @@
 Plugin Name: Pirate Crew
 Plugin URI: http://github.com/Piratenpartei/Pirate-Crew
 Description: Defines crew (people) list and cards for websites in pirate style 
-Version: 1.0.5
+Version: 1.0.6
 Author: xwolf
 Author URI: http://www.xwolf.de
 License: GPL
@@ -44,7 +44,7 @@ if (!class_exists('Pirate_Crew')):
 /*-----------------------------------------------------------------------------------*/
     class Pirate_Crew {
     
-	const version = '1.0.5';
+	const version = '1.0.6';
 	const php_version = '5.6'; // Minimal erforderliche PHP-Version
 	const wp_version = '4.5'; // Minimal erforderliche WordPress-Version
 	

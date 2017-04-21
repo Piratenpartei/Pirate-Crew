@@ -11,4 +11,4 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 Simple member card plugin with pirate default images. Best in use with theme Pirate Rogue.
 
-Based on AWSM Team Lite Plugin
+
