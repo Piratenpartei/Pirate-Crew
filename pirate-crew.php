@@ -44,7 +44,7 @@ if (!class_exists('Pirate_Crew')):
 /*-----------------------------------------------------------------------------------*/
     class Pirate_Crew {
     
-	const version = '1.0.7';
+	const version = '1.0.8';
 	const php_version = '5.6'; // Minimal erforderliche PHP-Version
 	const wp_version = '4.5'; // Minimal erforderliche WordPress-Version
 	
@@ -77,8 +77,8 @@ if (!class_exists('Pirate_Crew')):
                 'plugin_file'       => __FILE__,
                 'plugin_version'    => self::version, // '1.0.4',
                 'text_domain'       => $this->text_domain, // 'pirate-crew',
-		'image_size_width'  => 500,
-		'image_size_height' => 500,
+		'image_size_width'  => 300,
+		'image_size_height' => 300,
 		'image_size_crop'   => true,
             );
             $this->pirate_crew_load_textdomain();
