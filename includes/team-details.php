@@ -11,7 +11,7 @@
                             if($members->have_posts()): ?>
                             <select name="members" id="picrew-members">			
                                     <?php 
-                                    echo '<option value="" data-img="'.$defaultimage.'">'._e('Select a member',$this->text_domain).'</option>';
+                                    echo '<option value="" data-img="'.$defaultimage.'">'.__('Select a member',$this->text_domain).'</option>';
                                     while($members->have_posts()):  $members->the_post();
                                             $disabled ="";
                                             if(in_array($members->post->ID, $options['memberlist']) ) $disabled ="disabled";
@@ -23,13 +23,13 @@
                             <?php else: 
                             $addmember = admin_url('post-new.php?post_type=pirate_crew_member');
                             echo '<p>';
-                            _e('You haven’t added any team members yet. ',$this->text_domain); 
-                            echo '<a href="'.$addmember.'">'.__("Add a team member",$this->text_domain).'</a>';
+                            _e('You haven\'t added any crew members yet.',$this->text_domain); 
+                            echo '<a href="'.$addmember.'">'.__("Add a crew member",$this->text_domain).'</a>';
                             echo '</p>';
                             endif;?>
                     </div><!-- .picrew-select-members -->
                     <ul class="picrew-members-list-selected">
-                            <div class="picrew-members-info">No Members Selected</div>
+                            <div class="picrew-members-info"><?php echo __('No Members Selected' ,$this->text_domain); ?></div>
                             <script type="text/html" id="tmpl-picrew-member-list">
                                <li data-member-id="{{{data.id}}}" class="">
                                     <img width="31" height="31" src="{{{data.src}}}"/>
@@ -87,20 +87,20 @@
                                     <div class="picrew-col-2">
                                             <?php
                                             $preset = array(
-                                                'style-1'=>'Style 1',
-                                                'style-2'=>'Style 2',
-                                                'style-3'=>'Style 3',
-                                                'style-4'=>'Style 4');
+                                                'style-1' => sprintf(__('Style %d', $this->text_domain), 1),
+                                                'style-2' => sprintf(__('Style %d', $this->text_domain), 2),
+                                                'style-3' => sprintf(__('Style %d', $this->text_domain), 3),
+                                                'style-4' => sprintf(__('Style %d', $this->text_domain), 4));
                                             $this->selectbuilder('preset', $preset, $options['preset'], '', "picrew-select-default dyn-sel picrew-styles",'key'); 
                                             ?>
                                     </div><!-- .picrew-col-2 -->
                                     <div class="picrew-col-2 picrew-columns-wrap">
                                             <?php
                                             $columns = array(
-                                                '2'=>'2 Column',
-                                                '3'=>'3 Column',
-                                                '4'=>'4 Column',
-                                                '5'=>'5 Column');
+                                                '2' => sprintf(__('%d Columns', $this->text_domain), 2),
+                                                '3' => sprintf(__('%d Columns', $this->text_domain), 3),
+                                                '4' => sprintf(__('%d Columns', $this->text_domain), 4),
+                                                '5' => sprintf(__('%d Columns', $this->text_domain), 5));
                                             $this->selectbuilder('columns', $columns, $options['columns'], '', "picrew-select-default dyn-sel picrew-columns",'key'); 
                                             ?>
                                     </div><!-- .picrew-col-2 -->

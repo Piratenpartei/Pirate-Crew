@@ -3,19 +3,19 @@
 	<div class="picrew-table <?php echo $this->item_style($options);?>">
 		<div class="picrew-table-row picrew-table-head">
 			<div class="picrew-table-cell">
-				<?php _e('Image'); ?>
+				<?php _e('Photo', $this->text_domain); ?>
 			</div><!-- .picrew-table-cell -->
 			<div class="picrew-table-cell">
-				<?php _e('Name'); ?>
+				<?php _e('Name', $this->text_domain); ?>
 			</div><!-- .picrew-table-cell -->
 			<div class="picrew-table-cell">
-				<?php _e('Position'); ?>
+				<?php _e('Position', $this->text_domain); ?>
 			</div><!-- .picrew-table-cell -->
 			<div class="picrew-table-cell">
-				<?php _e('Short Description'); ?>
+				<?php _e('Short Description', $this->text_domain); ?>
 			</div><!-- .picrew-table-cell -->			
 			<div class="picrew-table-cell">
-				<?php _e('Social Links'); ?>
+				<?php _e('Social Links', $this->text_domain); ?>
 			</div><!-- .picrew-table-cell -->
 		</div>
 		<?php 

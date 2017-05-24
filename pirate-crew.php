@@ -121,11 +121,11 @@ if (!class_exists('Pirate_Crew')):
 		$error = '';
 
 		if (version_compare(PHP_VERSION, self::php_version, '<')) {
-		    $error = sprintf(__('Your PHP-Version %s is old. Please update at least to version %s.', $this->text_domain), PHP_VERSION, self::php_version);
+		    $error = sprintf(__('Your version of PHP (%s) is too old. Please update at least to version %s.', $this->text_domain), PHP_VERSION, self::php_version);
 		}
 
 		if (version_compare($GLOBALS['wp_version'], self::wp_version, '<')) {
-		    $error = sprintf(__('Your Wordpress-Version %s is too old. Please upgrade at least to version %s.', $this->text_domain), $GLOBALS['wp_version'], self::wp_version);
+		    $error = sprintf(__('Your version of WordPress (%s) is too old. Please upgrade at least to version %s.', $this->text_domain), $GLOBALS['wp_version'], self::wp_version);
 		}
 
 		if (!empty($error)) {
@@ -196,25 +196,23 @@ if (!class_exists('Pirate_Crew')):
             if (post_type_exists("pirate_crew_member")) {
                 return;
             }
-            $singular =  __('Pirate Crew Member', $this->text_domain);
-            $plural =  __('Pirate Crews Members', $this->text_domain);
             $labels = array(
-                'name'              =>  __('Pirate Crew', $this->text_domain),
-                'singular_name'     => __('Crew Member', $this->text_domain),
-                'menu_name'         => __('Pirate Crew', $this->text_domain),
+                'name'              => __('Pirate Crew Member', $this->text_domain),
+                'singular_name'     => __('Pirate Crew Member', $this->text_domain),
+                'menu_name'         => __('Pirate Crews', $this->text_domain),
                 'add_new'           => __('Add New Member', $this->text_domain),
-                'add_new_item'      => sprintf(__('Add %s', $this->text_domain), $singular),
-                'new_item'          => sprintf(__('New %s', $this->text_domain), $singular),
-                'edit_item'         => sprintf(__('Edit %s', $this->text_domain), $singular),
-                'view_item'         => sprintf(__('View %s', $this->text_domain), $singular),
-                'all_items'         => sprintf(__('Members', $this->text_domain)),
-                'search_items'      => sprintf(__('Search %s', $this->text_domain), $plural),
-                'not_found'         => sprintf(__('No %s found', $this->text_domain), $plural),
-                'not_found_in_trash' => sprintf(__('No %s found in trash', $this->text_domain), $plural)
+                'add_new_item'      => __('Add New Member', $this->text_domain),
+                'new_item'          => __('New Crew Member', $this->text_domain),
+                'edit_item'         => __('Edit Crew Member', $this->text_domain),
+                'view_item'         => __('View Crew Member', $this->text_domain),
+                'all_items'         => __('Members', $this->text_domain),
+                'search_items'      => __('Search Crew Members', $this->text_domain),
+                'not_found'         => __('No crew members found.', $this->text_domain),
+                'not_found_in_trash' => __('No crew members found in trash.', $this->text_domain)
             );
             $cp_args = array(
                 'labels'        => $labels,
-                'description'   => sprintf(__('This is where you can create and manage %s.', $this->text_domain), __('Crew Members', $this->text_domain)),
+                'description'   => __('This is where you can create and manage crew members.', $this->text_domain),
                 'publicly_queryable' => false,
                 'show_ui'        => true,
                 'show_in_menu'  => true,
@@ -228,25 +226,23 @@ if (!class_exists('Pirate_Crew')):
             if (post_type_exists("pirate_crew")) {
                 return;
             }
-            $singular =  __('Group', $this->text_domain);
-            $plural =  __('Groups', $this->text_domain);
             $labels = array(
-                'name'              => __('Pirate Crew Group', $this->text_domain),
-                'singular_name'     => __('Pirate Crew Group', $this->text_domain),
-                'menu_name'         => __('Pirate Crew Group', $this->text_domain),
-                'add_new'           => __('Add Group', $this->text_domain),
-                'add_new_item'      => sprintf(__('Add %s', $this->text_domain), $singular),
-                'new_item'          => sprintf(__('New %s', $this->text_domain), $singular),
-                'edit_item'         => sprintf(__('Edit %s', $this->text_domain), $singular),
-                'view_item'         => sprintf(__('View %s', $this->text_domain), $singular),
-                'all_items'         => sprintf(__('Groups', $this->text_domain)),
-                'search_items'      => sprintf(__('Search %s', $this->text_domain), $plural),
-                'not_found'         => sprintf(__('No %s found', $this->text_domain), $plural),
-                'not_found_in_trash' => sprintf(__('No %s found in trash', $this->text_domain), $plural)
+                'name'              => __('Pirate Crew', $this->text_domain),
+                'singular_name'     => __('Pirate Crew', $this->text_domain),
+                'menu_name'         => __('Pirate Crews', $this->text_domain),
+                'add_new'           => __('Add New Crew', $this->text_domain),
+                'add_new_item'      => __('Add New Crew', $this->text_domain),
+                'new_item'          => __('New Crew', $this->text_domain),
+                'edit_item'         => __('Edit Crew', $this->text_domain),
+                'view_item'         => __('View Crew', $this->text_domain),
+                'all_items'         => __('Crews', $this->text_domain),
+                'search_items'      => __('Search Crews', $this->text_domain),
+                'not_found'         => __('No crews found.', $this->text_domain),
+                'not_found_in_trash' => __('No crews found in trash.', $this->text_domain)
             );
             $cp_args = array(
                 'labels'            => $labels,
-                'description'       => sprintf(__('This is where you can create and manage %s.', $this->text_domain), __('Crew', $this->text_domain)),
+                'description'       => __('This is where you can create and manage crews.', $this->text_domain),
                 'show_ui'           => true,
                 "show_in_menu"      => 'edit.php?post_type=pirate_crew_member',
                 'capability_type'   => 'post',
@@ -382,14 +378,14 @@ if (!class_exists('Pirate_Crew')):
         /* Add Submenu Items
         /*--------------------------------------------------------------------*/
         public function add_submenu_items() {
-            add_submenu_page('edit.php?post_type=pirate_crew_member', __('Add Group', $this->text_domain), __('Add Team', $this->text_domain), 'manage_options', 'post-new.php?post_type=pirate_crew');
+            add_submenu_page('edit.php?post_type=pirate_crew_member', __('Add New Crew', $this->text_domain), __('Add New Crew', $this->text_domain), 'manage_options', 'post-new.php?post_type=pirate_crew');
         }
         /*--------------------------------------------------------------------*/
         /* Register metaboxes
         /*--------------------------------------------------------------------*/
         public function register_metaboxes()  {
             add_meta_box('member_details', __('Member Details', $this->text_domain), array( $this, 'member_details_meta' ), 'pirate_crew_member');
-            add_meta_box('team_details', __('Group Details', $this->text_domain), array( $this, 'team_details_meta' ), 'pirate_crew', 'normal', 'high');
+            add_meta_box('team_details', __('Crew Details', $this->text_domain), array( $this, 'team_details_meta' ), 'pirate_crew', 'normal', 'high');
             add_meta_box('team_details', __('Pirate Crew Member', $this->text_domain), array( $this, 'member_post_insert' ), 'post', 'normal', 'high');
 	}
         /*--------------------------------------------------------------------*/
