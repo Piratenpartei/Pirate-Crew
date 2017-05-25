@@ -4,7 +4,7 @@
     <input class="widefat" type="text" name="pirate-crew-designation" id="pirate-crew-designation" value="<?php echo esc_attr(get_post_meta($post->ID, 'pirate-crew-designation', true));?>"/>
 </p>
 <p>
-	<label for="pirate-crew-short-desc"><?php _e( 'Short Description (In 140 characters or less)', $this->text_domain ); ?></label><br/>
+	<label for="pirate-crew-short-desc"><?php _e( 'Short Description (in 140 characters or less)', $this->text_domain ); ?></label><br/>
 	<textarea id="pirate-crew-short-desc" name="pirate-crew-short-desc" class="widefat" type="text" maxlength="140"><?php echo esc_attr(get_post_meta($post->ID, 'pirate-crew-short-desc', true));?></textarea>
 </p>
 </div>
