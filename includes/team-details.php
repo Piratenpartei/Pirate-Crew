@@ -3,15 +3,15 @@
         <div class="pirate-crew-customize-inner">
             <div class="pirate-crew-customize-member">
                     <div class="picrew-heading-group">
-                            <h2 class="sub-h"><?php _e('Members', $this->text_domain);?></h2>
-                            <span><?php _e('Select members from the dropdown, drag and drop them to reorder.', $this->text_domain);?></span>
+                            <h2 class="sub-h"><?php _e('Members', 'pirate-crew');?></h2>
+                            <span><?php _e('Select members from the dropdown, drag and drop them to reorder.', 'pirate-crew');?></span>
                     </div>
                     <div class="picrew-select-members">
                             <?php 
                             if($members->have_posts()): ?>
                             <select name="members" id="picrew-members">			
                                     <?php 
-                                    echo '<option value="" data-img="'.$defaultimage.'">'.__('Select a member',$this->text_domain).'</option>';
+                                    echo '<option value="" data-img="'.$defaultimage.'">'.__('Select a member','pirate-crew').'</option>';
                                     while($members->have_posts()):  $members->the_post();
                                             $disabled ="";
                                             if(in_array($members->post->ID, $options['memberlist']) ) $disabled ="disabled";
@@ -23,13 +23,13 @@
                             <?php else: 
                             $addmember = admin_url('post-new.php?post_type=pirate_crew_member');
                             echo '<p>';
-                            _e('You haven\'t added any crew members yet.',$this->text_domain); 
-                            echo '<a href="'.$addmember.'">'.__("Add a crew member",$this->text_domain).'</a>';
+                            _e('You haven\'t added any crew members yet.','pirate-crew'); 
+                            echo '<a href="'.$addmember.'">'.__("Add a crew member",'pirate-crew').'</a>';
                             echo '</p>';
                             endif;?>
                     </div><!-- .picrew-select-members -->
                     <ul class="picrew-members-list-selected">
-                            <div class="picrew-members-info"><?php echo __('No Members Selected' ,$this->text_domain); ?></div>
+                            <div class="picrew-members-info"><?php echo __('No Members Selected' ,'pirate-crew'); ?></div>
                             <script type="text/html" id="tmpl-picrew-member-list">
                                <li data-member-id="{{{data.id}}}" class="">
                                     <img width="31" height="31" src="{{{data.src}}}"/>
@@ -61,8 +61,8 @@
             </div><!-- .pirate-crew-customize-member -->
             <div class="pirate-crew-customize-style">
                     <div class="picrew-heading-group">
-                            <h2 class="sub-h"><?php echo __('Presets', $this->text_domain);?></h2>
-                            <span><?php echo __('Choose a preset from below.', $this->text_domain);?></span>
+                            <h2 class="sub-h"><?php echo __('Presets', 'pirate-crew');?></h2>
+                            <span><?php echo __('Choose a preset from below.', 'pirate-crew');?></span>
                     </div>
                     <div class="picrew-preset-list picrew-clearfix">
                             <?php
@@ -81,26 +81,26 @@
                     </div><!-- .picrew-preset-list -->
                     <div class="picrew-section picrew-clearfix">
                             <div class="picrew-heading-group">
-                                    <h2 class="sub-h"><?php echo __('Style', $this->text_domain);?></h2>
+                                    <h2 class="sub-h"><?php echo __('Style', 'pirate-crew');?></h2>
                             </div><!-- .picrew-heading-group -->
                             <div class="picrew-row">
                                     <div class="picrew-col-2">
                                             <?php
                                             $preset = array(
-                                                'style-1' => sprintf(__('Style %d', $this->text_domain), 1),
-                                                'style-2' => sprintf(__('Style %d', $this->text_domain), 2),
-                                                'style-3' => sprintf(__('Style %d', $this->text_domain), 3),
-                                                'style-4' => sprintf(__('Style %d', $this->text_domain), 4));
+                                                'style-1' => sprintf(__('Style %d', 'pirate-crew'), 1),
+                                                'style-2' => sprintf(__('Style %d', 'pirate-crew'), 2),
+                                                'style-3' => sprintf(__('Style %d', 'pirate-crew'), 3),
+                                                'style-4' => sprintf(__('Style %d', 'pirate-crew'), 4));
                                             $this->selectbuilder('preset', $preset, $options['preset'], '', "picrew-select-default dyn-sel picrew-styles",'key'); 
                                             ?>
                                     </div><!-- .picrew-col-2 -->
                                     <div class="picrew-col-2 picrew-columns-wrap">
                                             <?php
                                             $columns = array(
-                                                '2' => sprintf(__('%d Columns', $this->text_domain), 2),
-                                                '3' => sprintf(__('%d Columns', $this->text_domain), 3),
-                                                '4' => sprintf(__('%d Columns', $this->text_domain), 4),
-                                                '5' => sprintf(__('%d Columns', $this->text_domain), 5));
+                                                '2' => sprintf(__('%d Columns', 'pirate-crew'), 2),
+                                                '3' => sprintf(__('%d Columns', 'pirate-crew'), 3),
+                                                '4' => sprintf(__('%d Columns', 'pirate-crew'), 4),
+                                                '5' => sprintf(__('%d Columns', 'pirate-crew'), 5));
                                             $this->selectbuilder('columns', $columns, $options['columns'], '', "picrew-select-default dyn-sel picrew-columns",'key'); 
                                             ?>
                                     </div><!-- .picrew-col-2 -->
@@ -119,7 +119,7 @@
     	<# } #>
     	<p class="select2-result-repository__title">{{{data.title}}}</p>
     	<# if ( data.disabled ) { #>
-    	<span class="select2-result-repository__disabled"><?php _e('Added',$this->text_domain);?></span>
+    	<span class="select2-result-repository__disabled"><?php _e('Added','pirate-crew');?></span>
     	<# } #>
    </div>
 </script>

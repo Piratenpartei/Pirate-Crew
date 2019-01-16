@@ -48,8 +48,6 @@ if (!class_exists('Pirate_Crew')):
 	const php_version = '5.6'; // Minimal erforderliche PHP-Version
 	const wp_version = '4.5'; // Minimal erforderliche WordPress-Version
 	
-	private $text_domain = 'pirate-crew';
-	
 	public static $themeswithowncss = array('Pirate Rogue');
         private static $instance = null;
        
@@ -75,8 +73,7 @@ if (!class_exists('Pirate_Crew')):
                 'plugin_url'        => plugin_dir_url(__FILE__),
                 'plugin_base'       => dirname(plugin_basename(__FILE__)),
                 'plugin_file'       => __FILE__,
-                'plugin_version'    => self::version, // '1.0.4',
-                'text_domain'       => $this->text_domain, // 'pirate-crew',
+                'plugin_version'    => self::version, 
 		'image_size_width'  => 300,
 		'image_size_height' => 300,
 		'image_size_crop'   => true,
@@ -86,9 +83,6 @@ if (!class_exists('Pirate_Crew')):
 	   
 	    
             $this->pirate_crew_backend();
-	    define('PIRATE_CREW_TEXTDOMAIN',  $this->text_domain);
-	    
-	    
 	    $this->pirate_crew_add_shortcodes();
         }
   
@@ -97,7 +91,7 @@ if (!class_exists('Pirate_Crew')):
         /* Load Textdomain
         /*--------------------------------------------------------------------*/
         public function pirate_crew_load_textdomain() {
-            load_plugin_textdomain($this->text_domain, false, $this->settings['plugin_base'] . '/language');
+            load_plugin_textdomain('pirate-crew', false, $this->settings['plugin_base'] . '/language');
         }
 	
 	/*--------------------------------------------------------------------*/
@@ -121,11 +115,11 @@ if (!class_exists('Pirate_Crew')):
 		$error = '';
 
 		if (version_compare(PHP_VERSION, self::php_version, '<')) {
-		    $error = sprintf(__('Your version of PHP (%s) is too old. Please update at least to version %s.', $this->text_domain), PHP_VERSION, self::php_version);
+		    $error = sprintf('Your version of PHP (%s) is too old. Please update at least to version %s.', PHP_VERSION, self::php_version);
 		}
 
 		if (version_compare($GLOBALS['wp_version'], self::wp_version, '<')) {
-		    $error = sprintf(__('Your version of WordPress (%s) is too old. Please upgrade at least to version %s.', $this->text_domain), $GLOBALS['wp_version'], self::wp_version);
+		    $error = sprintf('Your version of WordPress (%s) is too old. Please upgrade at least to version %s.', $GLOBALS['wp_version'], self::wp_version);
 		}
 
 		if (!empty($error)) {
@@ -197,22 +191,22 @@ if (!class_exists('Pirate_Crew')):
                 return;
             }
             $labels = array(
-                'name'              => __('Pirate Crew Member', $this->text_domain),
-                'singular_name'     => __('Pirate Crew Member', $this->text_domain),
-                'menu_name'         => __('Pirate Crews', $this->text_domain),
-                'add_new'           => __('Add New Member', $this->text_domain),
-                'add_new_item'      => __('Add New Member', $this->text_domain),
-                'new_item'          => __('New Crew Member', $this->text_domain),
-                'edit_item'         => __('Edit Crew Member', $this->text_domain),
-                'view_item'         => __('View Crew Member', $this->text_domain),
-                'all_items'         => __('Members', $this->text_domain),
-                'search_items'      => __('Search Crew Members', $this->text_domain),
-                'not_found'         => __('No crew members found.', $this->text_domain),
-                'not_found_in_trash' => __('No crew members found in trash.', $this->text_domain)
+                'name'              => __('Pirate Crew Member', 'pirate-crew'),
+                'singular_name'     => __('Pirate Crew Member', 'pirate-crew'),
+                'menu_name'         => __('Pirate Crews', 'pirate-crew'),
+                'add_new'           => __('Add New Member', 'pirate-crew'),
+                'add_new_item'      => __('Add New Member', 'pirate-crew'),
+                'new_item'          => __('New Crew Member', 'pirate-crew'),
+                'edit_item'         => __('Edit Crew Member', 'pirate-crew'),
+                'view_item'         => __('View Crew Member', 'pirate-crew'),
+                'all_items'         => __('Members', 'pirate-crew'),
+                'search_items'      => __('Search Crew Members', 'pirate-crew'),
+                'not_found'         => __('No crew members found.', 'pirate-crew'),
+                'not_found_in_trash' => __('No crew members found in trash.', 'pirate-crew')
             );
             $cp_args = array(
                 'labels'        => $labels,
-                'description'   => __('This is where you can create and manage crew members.', $this->text_domain),
+                'description'   => __('This is where you can create and manage crew members.', 'pirate-crew'),
                 'publicly_queryable' => false,
                 'show_ui'        => true,
                 'show_in_menu'  => true,
@@ -227,22 +221,22 @@ if (!class_exists('Pirate_Crew')):
                 return;
             }
             $labels = array(
-                'name'              => __('Pirate Crew', $this->text_domain),
-                'singular_name'     => __('Pirate Crew', $this->text_domain),
-                'menu_name'         => __('Pirate Crews', $this->text_domain),
-                'add_new'           => __('Add New Crew', $this->text_domain),
-                'add_new_item'      => __('Add New Crew', $this->text_domain),
-                'new_item'          => __('New Crew', $this->text_domain),
-                'edit_item'         => __('Edit Crew', $this->text_domain),
-                'view_item'         => __('View Crew', $this->text_domain),
-                'all_items'         => __('Crews', $this->text_domain),
-                'search_items'      => __('Search Crews', $this->text_domain),
-                'not_found'         => __('No crews found.', $this->text_domain),
-                'not_found_in_trash' => __('No crews found in trash.', $this->text_domain)
+                'name'              => __('Pirate Crew', 'pirate-crew'),
+                'singular_name'     => __('Pirate Crew', 'pirate-crew'),
+                'menu_name'         => __('Pirate Crews', 'pirate-crew'),
+                'add_new'           => __('Add New Crew', 'pirate-crew'),
+                'add_new_item'      => __('Add New Crew', 'pirate-crew'),
+                'new_item'          => __('New Crew', 'pirate-crew'),
+                'edit_item'         => __('Edit Crew', 'pirate-crew'),
+                'view_item'         => __('View Crew', 'pirate-crew'),
+                'all_items'         => __('Crews', 'pirate-crew'),
+                'search_items'      => __('Search Crews', 'pirate-crew'),
+                'not_found'         => __('No crews found.', 'pirate-crew'),
+                'not_found_in_trash' => __('No crews found in trash.', 'pirate-crew')
             );
             $cp_args = array(
                 'labels'            => $labels,
-                'description'       => __('This is where you can create and manage crews.', $this->text_domain),
+                'description'       => __('This is where you can create and manage crews.', 'pirate-crew'),
                 'show_ui'           => true,
                 "show_in_menu"      => 'edit.php?post_type=pirate_crew_member',
                 'capability_type'   => 'post',
@@ -285,9 +279,9 @@ if (!class_exists('Pirate_Crew')):
         function custom_columns_member($columns){
             $columns = array(
                 'cb'                => '<input type="checkbox" />',
-                'title'             => __('Name',$this->text_domain),
-                'featured_image'    => __('Photo',$this->text_domain),
-                'designation'       => __('Position',$this->text_domain),
+                'title'             => __('Name','pirate-crew'),
+                'featured_image'    => __('Photo','pirate-crew'),
+                'designation'       => __('Position','pirate-crew'),
                 'date'              => 'Date'
              );
             return $columns;
@@ -313,11 +307,11 @@ if (!class_exists('Pirate_Crew')):
         function custom_columns_team($columns){
             $columns = array(
                 'cb'        => '<input type="checkbox" />',
-                'title'     => __('Name',$this->text_domain),
-                'members'   => __('Members',$this->text_domain),
-                'preset'    => __('Preset',$this->text_domain),
-                'style'     => __('Style',$this->text_domain),
-                'shortcode' =>__('Shortcode',$this->text_domain)
+                'title'     => __('Name','pirate-crew'),
+                'members'   => __('Members','pirate-crew'),
+                'preset'    => __('Preset','pirate-crew'),
+                'style'     => __('Style','pirate-crew'),
+                'shortcode' =>__('Shortcode','pirate-crew')
              );
             return $columns;
         }
@@ -348,9 +342,9 @@ if (!class_exists('Pirate_Crew')):
         /*--------------------------------------------------------------------*/
         public function shortcode_preview($post) {
             if ('pirate_crew' == $post->post_type && 'publish' == $post->post_status) {
-                printf('<p>%1$s: <code>[crew id="%2$s"]</code><button id="copy-picrew" type="button" data-clipboard-text="[crew id=&quot;%2$s&quot;]" class="button">%3$s</button></p>', __("Shortcode", $this->text_domain), $post->ID, __("Copy", $this->text_domain));
+                printf('<p>%1$s: <code>[crew id="%2$s"]</code><button id="copy-picrew" type="button" data-clipboard-text="[crew id=&quot;%2$s&quot;]" class="button">%3$s</button></p>', __("Shortcode", 'pirate-crew'), $post->ID, __("Copy", 'pirate-crew'));
             } elseif ('pirate_crew_member' == $post->post_type && 'publish' == $post->post_status) {
-                printf('<p>%1$s: <code>[pirate id="%2$s"]</code><button id="copy-picrew" type="button" data-clipboard-text="[pirate id=&quot;%2$s&quot;]" class="button">%3$s</button></p>', __("Shortcode", $this->text_domain), $post->ID, __("Copy", $this->text_domain));
+                printf('<p>%1$s: <code>[pirate id="%2$s"]</code><button id="copy-picrew" type="button" data-clipboard-text="[pirate id=&quot;%2$s&quot;]" class="button">%3$s</button></p>', __("Shortcode", 'pirate-crew'), $post->ID, __("Copy", 'pirate-crew'));
             }
             return;
         }
@@ -378,15 +372,15 @@ if (!class_exists('Pirate_Crew')):
         /* Add Submenu Items
         /*--------------------------------------------------------------------*/
         public function add_submenu_items() {
-            add_submenu_page('edit.php?post_type=pirate_crew_member', __('Add New Crew', $this->text_domain), __('Add New Crew', $this->text_domain), 'manage_options', 'post-new.php?post_type=pirate_crew');
+            add_submenu_page('edit.php?post_type=pirate_crew_member', __('Add New Crew', 'pirate-crew'), __('Add New Crew', 'pirate-crew'), 'manage_options', 'post-new.php?post_type=pirate_crew');
         }
         /*--------------------------------------------------------------------*/
         /* Register metaboxes
         /*--------------------------------------------------------------------*/
         public function register_metaboxes()  {
-            add_meta_box('member_details', __('Member Details', $this->text_domain), array( $this, 'member_details_meta' ), 'pirate_crew_member');
-            add_meta_box('team_details', __('Crew Details', $this->text_domain), array( $this, 'team_details_meta' ), 'pirate_crew', 'normal', 'high');
-            add_meta_box('team_details', __('Pirate Crew Member', $this->text_domain), array( $this, 'member_post_insert' ), 'post', 'normal', 'high');
+            add_meta_box('member_details', __('Member Details', 'pirate-crew'), array( $this, 'member_details_meta' ), 'pirate_crew_member');
+            add_meta_box('team_details', __('Crew Details', 'pirate-crew'), array( $this, 'team_details_meta' ), 'pirate_crew', 'normal', 'high');
+            add_meta_box('team_details', __('Pirate Crew Member', 'pirate-crew'), array( $this, 'member_post_insert' ), 'post', 'normal', 'high');
 	}
         /*--------------------------------------------------------------------*/
         /* Metabox for extra data of crew member
