@@ -10,11 +10,11 @@
     ), $atts));
 	$options = $this->get_options('pirate_crew', $id);
 	if (!$options) {
-	    $out = '<div class="pirate-crew-error">' . __('Crew not found', $this->text_domain) . '</div>';
+	    $out = '<div class="pirate-crew-error">' . __('Crew not found', 'pirate-crew') . '</div>';
 	     return $out;
 	}
 	if (empty($options['memberlist'])) {
-	    $out = '<div class="pirate-crew-error">' . __('No members found', $this->text_domain) . '</div>';
+	    $out = '<div class="pirate-crew-error">' . __('No members found', 'pirate-crew') . '</div>';
 	    return $out;
 	}
 	$template = $this->settings['plugin_path'] . 'templates/' . $options['team-style'] . '.php';

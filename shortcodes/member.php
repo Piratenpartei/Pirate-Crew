@@ -93,5 +93,5 @@
     
 		
 	} else {
-	    $out = '<div class="pirate-crew-error">' . __('Pirate not found', PIRATE_CREW_TEXTDOMAIN) . '</div>';
+	    $out = '<div class="pirate-crew-error">' . __('Pirate not found', 'pirate-crew') . '</div>';
 	}
