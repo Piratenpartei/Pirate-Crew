@@ -4,23 +4,24 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pirate Crew 1.0.8\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/Pirate-Crew\n"
-"POT-Creation-Date: 2018-12-18 12:12+0100\n"
-"PO-Revision-Date: 2018-12-21 19:13+0100\n"
+"POT-Creation-Date: 2019-07-29 11:42+0200\n"
+"PO-Revision-Date: 2019-07-29 11:42+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.2\n"
+"X-Generator: Poedit 2.2.3\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-KeywordsList: __;_e;esc_html_e;esc_html_x:1,2c;esc_html__;"
-"esc_attr_e;esc_attr_x:1,2c;esc_attr__;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;"
-"_x:1,2c;_n:1,2;_n_noop:1,2;__ngettext:1,2;__ngettext_noop:1,2;_c,_nc:4c,1,2\n"
+"esc_attr_e;esc_attr_x:1,2c;esc_attr__;_ex:1,2c;_nx:4c,1,2;"
+"_nx_noop:4c,1,2;_x:1,2c;_n:1,2;_n_noop:1,2;__ngettext:1,2;"
+"__ngettext_noop:1,2;_c,_nc:4c,1,2\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: includes/member-details.php:3 pirate-crew.php:284 templates/table.php:12
+#: includes/member-details.php:3 pirate-crew.php:285 templates/table.php:12
 msgid "Position"
 msgstr "Position"
 
@@ -79,8 +80,8 @@ msgstr "Symbol auswählen"
 
 #: includes/member-details.php:68 includes/member-details.php:77
 #: includes/member-details.php:86
-msgid "ex: http://www.twitter.com/piratenpartei"
-msgstr "Beispiel: http://www.twitter.com/piratenpartei"
+msgid "ex: https://www.twitter.com/piratenpartei"
+msgstr "Beispiel: https://www.twitter.com/piratenpartei"
 
 #: includes/member-post-insert.php:6
 msgid "Select a member from the list to add as author to the post"
@@ -100,7 +101,7 @@ msgstr "Du hast noch keine Crew-Mitglieder hinzugefügt."
 msgid "Add a crew member"
 msgstr "Crew-Mitglied hinzufügen"
 
-#: includes/team-details.php:6 pirate-crew.php:202 pirate-crew.php:311
+#: includes/team-details.php:6 pirate-crew.php:203 pirate-crew.php:312
 msgid "Members"
 msgstr "Mitglieder"
 
@@ -121,7 +122,7 @@ msgstr "Vorlagen"
 msgid "Choose a preset from below."
 msgstr "Wählen unten eine Vorlage aus."
 
-#: includes/team-details.php:84 pirate-crew.php:313
+#: includes/team-details.php:84 pirate-crew.php:314
 msgid "Style"
 msgstr "Stil"
 
@@ -141,111 +142,111 @@ msgstr "%d Spalten"
 msgid "Added"
 msgstr "Hinzugefügt"
 
-#: pirate-crew.php:194 pirate-crew.php:195 pirate-crew.php:383
+#: pirate-crew.php:195 pirate-crew.php:196 pirate-crew.php:384
 msgid "Pirate Crew Member"
 msgstr "Piraten-Crew-Mitglied"
 
-#: pirate-crew.php:196 pirate-crew.php:226
+#: pirate-crew.php:197 pirate-crew.php:227
 msgid "Pirate Crews"
 msgstr "Piraten-Crews"
 
-#: pirate-crew.php:197 pirate-crew.php:198
+#: pirate-crew.php:198 pirate-crew.php:199
 msgid "Add New Member"
 msgstr "Neues Mitglied erstellen"
 
-#: pirate-crew.php:199
+#: pirate-crew.php:200
 msgid "New Crew Member"
 msgstr "Neues Crew-Mitglied"
 
-#: pirate-crew.php:200
+#: pirate-crew.php:201
 msgid "Edit Crew Member"
 msgstr "Crew-Mitglied bearbeiten"
 
-#: pirate-crew.php:201
+#: pirate-crew.php:202
 msgid "View Crew Member"
 msgstr "Crew-Mitglied anzeigen"
 
-#: pirate-crew.php:203
+#: pirate-crew.php:204
 msgid "Search Crew Members"
 msgstr "Crew-Mitglieder bearbeiten"
 
-#: pirate-crew.php:204
+#: pirate-crew.php:205
 msgid "No crew members found."
 msgstr "Keine Crew-Mitglieder gefunden."
 
-#: pirate-crew.php:205
+#: pirate-crew.php:206
 msgid "No crew members found in trash."
 msgstr "Keine Crew-Mitglieder im Papierkorb gefunden."
 
-#: pirate-crew.php:209
+#: pirate-crew.php:210
 msgid "This is where you can create and manage crew members."
 msgstr "Hier kannst du Crew-Mitglieder erstellen und verwalten."
 
-#: pirate-crew.php:224 pirate-crew.php:225
+#: pirate-crew.php:225 pirate-crew.php:226
 msgid "Pirate Crew"
 msgstr "Piraten-Crew"
 
-#: pirate-crew.php:227 pirate-crew.php:228 pirate-crew.php:375
+#: pirate-crew.php:228 pirate-crew.php:229 pirate-crew.php:376
 msgid "Add New Crew"
 msgstr "Neue Crew erstellen"
 
-#: pirate-crew.php:229
+#: pirate-crew.php:230
 msgid "New Crew"
 msgstr "Neue Crew"
 
-#: pirate-crew.php:230
+#: pirate-crew.php:231
 msgid "Edit Crew"
 msgstr "Crew bearbeiten"
 
-#: pirate-crew.php:231
+#: pirate-crew.php:232
 msgid "View Crew"
 msgstr "Crew anzeigen"
 
-#: pirate-crew.php:232
+#: pirate-crew.php:233
 msgid "Crews"
 msgstr "Crews"
 
-#: pirate-crew.php:233
+#: pirate-crew.php:234
 msgid "Search Crews"
 msgstr "Crews durchsuchen"
 
-#: pirate-crew.php:234
+#: pirate-crew.php:235
 msgid "No crews found."
 msgstr "Keine Crews gefunden."
 
-#: pirate-crew.php:235
+#: pirate-crew.php:236
 msgid "No crews found in trash."
 msgstr "Keine Crews im Papierkorb gefunden."
 
-#: pirate-crew.php:239
+#: pirate-crew.php:240
 msgid "This is where you can create and manage crews."
 msgstr "Hier kannst du Crews erstellen und verwalten."
 
-#: pirate-crew.php:282 pirate-crew.php:310 templates/table.php:9
+#: pirate-crew.php:283 pirate-crew.php:311 templates/table.php:9
 msgid "Name"
 msgstr "Name"
 
-#: pirate-crew.php:283 templates/table.php:6
+#: pirate-crew.php:284 templates/table.php:6
 msgid "Photo"
 msgstr "Foto"
 
-#: pirate-crew.php:312
+#: pirate-crew.php:313
 msgid "Preset"
 msgstr "Vorlage"
 
-#: pirate-crew.php:314 pirate-crew.php:345 pirate-crew.php:347
+#: pirate-crew.php:315 pirate-crew.php:346 pirate-crew.php:348
 msgid "Shortcode"
 msgstr "Shortcode"
 
-#: pirate-crew.php:345 pirate-crew.php:347
+#: pirate-crew.php:346 pirate-crew.php:348
 msgid "Copy"
 msgstr "Kopieren"
 
-#: pirate-crew.php:381
+#: pirate-crew.php:382
 msgid "Member Details"
 msgstr "Mitglied-Details"
 
-#: pirate-crew.php:382
+#: pirate-crew.php:383
 msgid "Crew Details"
 msgstr "Crew-Details"
 
@@ -263,7 +264,7 @@ msgstr "Pirat nicht gefunden"
 
 #: templates/table.php:15
 msgid "Short Description"
-msgstr "Kurzbschreibung"
+msgstr "Kurzbeschreibung"
 
 #: templates/table.php:18
 msgid "Social Links"

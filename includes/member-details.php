@@ -65,7 +65,7 @@
 			<td>
 				<?php $this->selectbuilder('pirate-crew-icon[]',$socialicons,$field['icon'],__('Select icon','pirate-crew'),'widefat picrew-icon-select');?>
 			</td>
-			<td><input type="text" placeholder="<?php _e('ex: http://www.twitter.com/piratenpartei','pirate-crew');?>" class="widefat" name="pirate-crew-link[]" value="<?php if(isset($field['link'])) echo esc_attr( $field['link'] ); ?>"/></td>
+			<td><input type="text" placeholder="<?php _e('ex: https://www.twitter.com/piratenpartei','pirate-crew');?>" class="widefat" name="pirate-crew-link[]" value="<?php if(isset($field['link'])) echo esc_attr( $field['link'] ); ?>"/></td>
 			<td><a class="button remove-row" href="#"><?php _e('Remove','pirate-crew');?></a></td>
 		</tr>	
 		<?php } else: ?> 
@@ -74,7 +74,7 @@
 			<td>
 				<?php $this->selectbuilder('pirate-crew-icon[]',$socialicons,'',__('Select icon','pirate-crew'),'widefat picrew-icon-select');?>
 			</td>
-			<td><input type="text" placeholder="<?php _e('ex: http://www.twitter.com/piratenpartei','pirate-crew');?>" class="widefat" name="pirate-crew-link[]" value=""/></td>
+			<td><input type="text" placeholder="<?php _e('ex: https://www.twitter.com/piratenpartei','pirate-crew');?>" class="widefat" name="pirate-crew-link[]" value=""/></td>
 			<td><a class="button remove-row" href="#"><?php _e('Remove','pirate-crew');?></a></td>
 		</tr>	
 		<?php endif; ?>
@@ -83,7 +83,7 @@
 			<td>
 				<?php $this->selectbuilder('pirate-crew-icon[]',$socialicons,'',__('Select icon','pirate-crew'),'widefat');?>
 			</td>
-			<td><input type="text" placeholder="<?php _e('ex: http://www.twitter.com/piratenpartei','pirate-crew');?>" class="widefat" name="pirate-crew-link[]" value=""/></td>
+			<td><input type="text" placeholder="<?php _e('ex: https://www.twitter.com/piratenpartei','pirate-crew');?>" class="widefat" name="pirate-crew-link[]" value=""/></td>
 			<td><a class="button remove-row" href="#"><?php _e('Remove','pirate-crew');?></a></td>
 		</tr>
 	</tbody>
