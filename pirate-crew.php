@@ -1,11 +1,12 @@
 <?php
 /*
 Plugin Name: Pirate Crew
-Plugin URI: http://github.com/Piratenpartei/Pirate-Crew
+Plugin URI: https://github.com/Piratenpartei/Pirate-Crew
+GitHub Plugin URI: https://github.com/Piratenpartei/Pirate-Crew
 Description: Defines crew (people) list and cards for websites in pirate style 
 Version: 1.0.7
 Author: xwolf
-Author URI: http://www.xwolf.de
+Author URI: https://www.xwolf.de
 License: GPL
 */
 
